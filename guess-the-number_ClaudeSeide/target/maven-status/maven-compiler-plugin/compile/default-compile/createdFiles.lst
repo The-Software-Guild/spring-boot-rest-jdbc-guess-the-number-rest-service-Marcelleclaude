@@ -1,0 +1,13 @@
+meza\guessNumberGame\data\GameDatabaseDao$GameMapper.class
+meza\guessNumberGame\data\RoundDatabaseDao$RoundMapper.class
+meza\guessNumberGame\data\GameDao.class
+meza\guessNumberGame\data\RoundDao.class
+meza\guessNumberGame\data\RoundDatabaseDao.class
+meza\guessNumberGame\models\Round.class
+meza\guessNumberGame\Service\GameService.class
+meza\guessNumberGame\data\GameDatabaseDao.class
+meza\guessNumberGame\data\GameInMemoryDao.class
+meza\guessNumberGame\controllers\GameController.class
+meza\guessNumberGame\App.class
+meza\guessNumberGame\TestApplicationConfiguration.class
+meza\guessNumberGame\models\Game.class
