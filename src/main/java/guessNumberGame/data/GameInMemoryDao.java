@@ -4,7 +4,6 @@ import guessNumberGame.models.Game;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Repository;
 
 //@Repository
 public class GameInMemoryDao implements GameDao {

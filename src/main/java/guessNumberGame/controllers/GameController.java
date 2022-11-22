@@ -58,7 +58,7 @@ public class GameController {
         gameService.getAllGames(games);
         return games;
     }
-
+//@pathVariable can help identify an entity with a PK
     @GetMapping("game/{id}")
     public Game getGameById(@PathVariable int id) {
         //implement
