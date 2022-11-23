@@ -54,7 +54,17 @@ public class GameDatabaseDaoTest extends TestCase {
     @Test
     public void testGetAll() {
         //implement
-    }
+        GameService gameService= new GameService();
+        Game game=gameService.newGame();
+        Game game2 = gameService.newGame();
+        gameDao.add(game);
+        gameDao.add(game2);
+        List<Game> games =gameDao.getAll();
+
+        assertEquals(2,games.size());
+        assertTrue(games.contains(game));
+        assertTrue(games.contains(game2));
+   }
 
 
     @Test
@@ -71,5 +81,15 @@ public class GameDatabaseDaoTest extends TestCase {
     @Test
     public void testDeleteById() {
          //implement
+        GameService gameService=new GameService();
+        Game game=gameService.newGame();
+        Game game2=gameService.newGame();
+
+        gameDao.add(game);
+        gameDao.add(game2);
+
+        gameDao.deleteById(game.getGameId());
+        List<Game>games= gameDao.getAll();
+        assertEquals(1,games.size());
     }
 }
