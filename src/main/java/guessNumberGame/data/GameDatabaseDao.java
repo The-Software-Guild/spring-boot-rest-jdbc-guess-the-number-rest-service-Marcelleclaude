@@ -31,7 +31,9 @@ public class GameDatabaseDao implements GameDao {
 
         final String sql = "INSERT INTO game(answer, isFinished) VALUES(?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-
+// trying something
+        //again...
+        //lets see
 
         jdbcTemplate.update((Connection conn) -> {
 
