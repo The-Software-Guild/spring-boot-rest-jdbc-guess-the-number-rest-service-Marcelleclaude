@@ -29,7 +29,7 @@ public class GameDatabaseDao implements GameDao {
     @Override
     public Game add(Game game) {
 
-        final String sql = "INSERT INTO Game(answer, isFinished) VALUES(?,?);";
+        final String sql = "INSERT INTO game(answer, isFinished) VALUES(?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
 
@@ -40,12 +40,12 @@ public class GameDatabaseDao implements GameDao {
                 Statement.RETURN_GENERATED_KEYS);
 
             statement.setString(1, game.getAnswer());
-            statement.setBoolean(2, game.getIsFinished());
+            statement.setBoolean(2, game.isFinished());
             return statement;
 
         }, keyHolder);
 
-        game.setGameId(keyHolder.getKey().intValue());
+        game.setGame_id(keyHolder.getKey().intValue());
 
         return game;
     }
@@ -66,7 +66,7 @@ public class GameDatabaseDao implements GameDao {
           //  Game game=new Game();
 //            try (PreparedStatement statement =this.connection.prepareStatement(Get_One);)
             final String sql = "SELECT game_id, answer, isFinished" +
-                    " FROM game WHERE game_id = ? ;";
+                    " FROM game WHERE game_id = ? ";
 
             return jdbcTemplate.queryForObject(sql, new GameMapper(), game_id);
         }
@@ -75,13 +75,13 @@ public class GameDatabaseDao implements GameDao {
     public boolean update(Game game) {
 
          //implement
-            final String sql="UPDATE Game SET"  + " answer=? " + " game_id =? "+ " isFinished=? ";
-            return jdbcTemplate.update(sql, game.getAnswer(), game.getIsFinished(), game.getGameId())>0;}
+            final String sql="UPDATE game SET"  + " answer=?, " + " game_id =?, "+ " isFinished=? WHERE game_id=?";
+            return jdbcTemplate.update(sql, game.getAnswer(),game.getGame_id(), game.isFinished(),game.getGame_id())>0;}
 
     @Override
     public boolean deleteById(int game_id) {
        //implement
-            final String sql="DELETE FROM Game Where game_id=?;";
+            final String sql="DELETE FROM game Where game_id=?;";
             return jdbcTemplate.update(sql,game_id)>0;
     }
 
@@ -90,9 +90,9 @@ public class GameDatabaseDao implements GameDao {
         @Override
         public Game mapRow(ResultSet rs, int index) throws SQLException {
             Game game = new Game();
-            game.setGameId(rs.getInt("game_id"));
+            game.setGame_id(rs.getInt("game_id"));
             game.setAnswer(rs.getString("answer"));
-            game.setIsFinished(rs.getBoolean("isFinished"));
+            game.setFinished(rs.getBoolean("isFinished"));
             return game;
         }
     }

@@ -43,7 +43,7 @@ public class GameController {
     @ResponseStatus(HttpStatus.CREATED)
     public Round guessNumber(@RequestBody Round body) {
        //implement
-        Game game= gameDao.findById(body.getGameId());
+        Game game= gameDao.findById(body.getGame_id());
         GameService gameService= new GameService();
         Round round= gameService.guessNumber(game, body.getGuess(),gameDao);
         return roundDao.add(round);

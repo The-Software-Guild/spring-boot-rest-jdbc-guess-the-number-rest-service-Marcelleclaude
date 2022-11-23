@@ -19,11 +19,11 @@ public class Round {
         this.round_id = round_id;
     }
 
-    public int getGameId() {
+    public int getGame_id() {
         return game_id;
     }
 
-    public void setGameId(int game_id) {
+    public void setGame_id(int game_id) {
         this.game_id = game_id;
     }
 

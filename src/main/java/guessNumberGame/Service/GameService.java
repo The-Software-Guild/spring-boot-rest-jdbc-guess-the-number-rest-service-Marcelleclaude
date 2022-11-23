@@ -26,13 +26,13 @@ public class GameService {
 
         }
         game.setAnswer(answer.toString());
-        game.setIsFinished(false);
+        game.setFinished(false);
         return game;
     }
 
 
     public Game getGames(Game game) {
-        if (!game.getIsFinished()) {
+        if (!game.isFinished()) {
             game.setAnswer("****");
         }
         return game;
@@ -40,7 +40,7 @@ public class GameService {
 
     public void getAllGames(List<Game> games) {
         for (Game game : games) {
-            if (!game.getIsFinished()) {
+            if (!game.isFinished()) {
                 game.setAnswer("****");
             }
         }
@@ -48,11 +48,11 @@ public class GameService {
 
     public Round guessNumber(Game game, String guess, GameDao gameDao) {
         Round round = checkGuess(game, guess);
-        if (game.getIsFinished()) {
+        if (game.isFinished()) {
             gameDao.update(game);
         }
         setTimeStamp(round);
-        round.setGameId(game.getGameId());
+        round.setGame_id(game.getGame_id());
 
         return round;
     }
@@ -67,7 +67,7 @@ public class GameService {
         String answer = game.getAnswer();
 
         if (guess.equals(answer)) {
-            game.setIsFinished(true);
+            game.setFinished(true);
         }
 
         String resultsFormat = "e:%d:p:%d";

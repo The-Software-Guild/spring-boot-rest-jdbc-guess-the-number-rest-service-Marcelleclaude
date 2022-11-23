@@ -39,7 +39,7 @@ public class RoundDatabaseDaoTest extends TestCase {
 
         List<Game> games = gameDao.getAll();
         for(Game game : games) {
-            gameDao.deleteById(game.getGameId());
+            gameDao.deleteById(game.getGame_id());
         }
     }
 
@@ -50,7 +50,7 @@ public class RoundDatabaseDaoTest extends TestCase {
         gameDao.add(game);
 
         Round round = new Round();
-        round.setGameId(game.getGameId());
+        round.setGame_id(game.getGame_id());
         gameService.setTimeStamp(round);
         round.setGuess("1234");
         round.setGuessResult("e:2:p:1");
@@ -71,11 +71,11 @@ public class RoundDatabaseDaoTest extends TestCase {
 
         Round round = new Round();
         round.setGuess("1111");
-        round.setGameId(game.getGameId());
+        round.setGame_id(game.getGame_id());
 
         Round round2 = new Round();
         round2.setGuess("2222");
-        round2.setGameId(game2.getGameId());
+        round2.setGame_id(game2.getGame_id());
 
         roundDao.add(round);
         roundDao.add(round2);
@@ -87,6 +87,41 @@ public class RoundDatabaseDaoTest extends TestCase {
     @Test
     public void testGetAllOfGame() {
          //implement
-    }
+        // Declare and initialize GameService object
+        GameService gameService = new GameService();
 
-}
+        // Create and add 2 new games to the dao
+        Game game = gameService.newGame();
+        Game game2 = gameService.newGame();
+        gameDao.add(game);
+        gameDao.add(game2);
+
+        // Get a list of all games
+        List<Game> games = gameDao.getAll();
+
+        // Create and add 3 new rounds
+        // (round for game, round2 for game, and round3 for game2)
+        Round round = new Round();
+        round.setGuess("1111");
+        round.setGame_id(game.getGame_id());
+        Round round2 = new Round();
+        round2.setGuess("2222");
+        round2.setGame_id(game.getGame_id());
+        Round round3 = new Round();
+        round3.setGuess("3333");
+        round3.setGame_id(game2.getGame_id());
+        roundDao.add(round);
+        roundDao.add(round2);
+        roundDao.add(round3);
+
+        // Get a list of all rounds for game (not game2)
+        List<Round> rounds = roundDao.getAllOfGame(game.getGame_id());
+
+        // Assert that rounds list size is 2
+        assertEquals(2, rounds.size());
+        // Assert that the rounds list contains round
+        assertTrue(rounds.contains(round));
+        // Assert that the rounds list does NOT contain round 3 (for game2)
+        assertFalse(rounds.contains(round3));
+    }
+    }
