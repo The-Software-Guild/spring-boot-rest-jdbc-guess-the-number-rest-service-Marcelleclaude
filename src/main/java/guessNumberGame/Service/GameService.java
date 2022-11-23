@@ -74,7 +74,7 @@ public class GameService {
 
         // if guess is not the expected length then return 0 matches
         if (guess.length() != 4) {
-            round.setGuessResult(String.format(resultsFormat, exact, partial));
+            round.setResult(String.format(resultsFormat, exact, partial));
             return round;
         }
 
@@ -87,7 +87,7 @@ public class GameService {
             }
         }
 
-        round.setGuessResult(String.format(resultsFormat, exact, partial));
+        round.setResult(String.format(resultsFormat, exact, partial));
         return round;
     }
 
@@ -95,7 +95,7 @@ public class GameService {
         Calendar calendar = Calendar.getInstance();
         Timestamp guessTime = new Timestamp(calendar.getTime().getTime());
 
-        round.setTimeStamp(guessTime);
+        round.setGuess_time(guessTime);
     }
 
 }

@@ -30,7 +30,7 @@ public class GameDatabaseDaoTest extends TestCase {
     public void setUp() {
         List<Round> rounds = roundDao.getAll();
         for(Round round : rounds) {
-            roundDao.deleteById(round.getId());
+            roundDao.deleteById(round.getRound_id());
         }
 
         List<Game> games = gameDao.getAll();

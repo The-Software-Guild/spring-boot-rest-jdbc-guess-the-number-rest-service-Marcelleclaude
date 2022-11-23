@@ -34,7 +34,7 @@ public class RoundDatabaseDaoTest extends TestCase {
     public void setUp() {
         List<Round> rounds = roundDao.getAll();
         for(Round round : rounds) {
-            roundDao.deleteById(round.getId());
+            roundDao.deleteById(round.getRound_id());
         }
 
         List<Game> games = gameDao.getAll();
@@ -53,11 +53,11 @@ public class RoundDatabaseDaoTest extends TestCase {
         round.setGame_id(game.getGame_id());
         gameService.setTimeStamp(round);
         round.setGuess("1234");
-        round.setGuessResult("e:2:p:1");
+        round.setResult("e:2:p:1");
         roundDao.add(round);
-        Round fromDao = roundDao.findById(round.getId());
+        Round fromDao = roundDao.findById(round.getRound_id());
 
-        assertEquals(round.getId(), fromDao.getId());
+        assertEquals(round.getRound_id(), fromDao.getRound_id());
     }
 
     @Test

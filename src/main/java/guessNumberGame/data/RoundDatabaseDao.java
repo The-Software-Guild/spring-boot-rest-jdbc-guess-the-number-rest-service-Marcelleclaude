@@ -36,14 +36,14 @@ public class RoundDatabaseDao implements  RoundDao{
                     Statement.RETURN_GENERATED_KEYS);
 
             statement.setInt(1, round.getGame_id());
-            statement.setTimestamp(2, round.getTimeStamp());
+            statement.setTimestamp(2, round.getGuess_time());
             statement.setString(3, round.getGuess());
-            statement.setString(4, round.getGuessResult());
+            statement.setString(4, round.getResult());
             return statement;
 
         }, keyHolder);
 
-        round.setId(keyHolder.getKey().intValue());
+        round.setRound_id(keyHolder.getKey().intValue());
 
         return round;
     }
@@ -83,11 +83,11 @@ public class RoundDatabaseDao implements  RoundDao{
         @Override
         public Round mapRow(ResultSet rs, int index) throws SQLException {
             Round round = new Round();
-            round.setId(rs.getInt("round_id"));
+            round.setRound_id(rs.getInt("round_id"));
             round.setGame_id(rs.getInt("game_id"));
-            round.setTimeStamp(rs.getTimestamp("guess_time"));
+            round.setGuess_time(rs.getTimestamp("guess_time"));
             round.setGuess(rs.getString("guess"));
-            round.setGuessResult(rs.getString("result"));
+            round.setResult(rs.getString("result"));
             return round;
         }
     }

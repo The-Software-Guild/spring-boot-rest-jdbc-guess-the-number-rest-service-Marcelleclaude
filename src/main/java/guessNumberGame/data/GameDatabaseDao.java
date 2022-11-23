@@ -75,7 +75,7 @@ public class GameDatabaseDao implements GameDao {
     public boolean update(Game game) {
 
          //implement
-            final String sql="UPDATE game SET"  + " answer=?, " + " game_id =?, "+ " isFinished=? WHERE game_id=?";
+            final String sql="UPDATE game SET"  + " answer = ?, " + " game_id =?, "+ " isFinished=? WHERE game_id=?";
             return jdbcTemplate.update(sql, game.getAnswer(),game.getGame_id(), game.isFinished(),game.getGame_id())>0;}
 
     @Override
